@@ -77,8 +77,8 @@
           designWidth = parseInt(hotcss.designWidth, 10);
       }
       //rem可能为小数，这里不再做处理了
-      // return rem * 37.5 * designWidth / 375;
-      return rem * 50 * designWidth / 320;
+      return rem * 37.5 * designWidth / 375;
+      // return rem * 50 * designWidth / 320;
   }
 
   hotcss.mresize = function () {
@@ -91,8 +91,8 @@
       if (!innerWidth) {
           return false;
       }
-      // document.documentElement.style.fontSize = (innerWidth * 37.5 / 375) + 'px';
-      document.documentElement.style.fontSize = (innerWidth * 50 / 320) + 'px';
+      document.documentElement.style.fontSize = (innerWidth * 37.5 / 375) + 'px';
+      // document.documentElement.style.fontSize = (innerWidth * 50 / 320) + 'px';
       hotcss.callback && hotcss.callback();
 
   };
