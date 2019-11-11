@@ -1,6 +1,5 @@
 <template>
   <div>
-    首页
     <Header></Header>
   </div>
 </template>
