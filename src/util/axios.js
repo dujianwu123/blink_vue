@@ -28,4 +28,4 @@ class AjaxRequest {
   }
 }
 
-export default new AjaxRequest()
+export default AjaxRequest

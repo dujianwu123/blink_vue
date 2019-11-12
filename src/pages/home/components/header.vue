@@ -17,8 +17,6 @@
 <script>
 import Like from '@/common/like.vue'
 import Share from '@/common/share.vue'
-import axios from '@/util/axios.js'
-// import axios from 'axios'
 export default {
   components: {
     Like,
@@ -29,26 +27,6 @@ export default {
       like_class: 'classic_like',
       share_class: 'share_class'
     }
-  },
-  mounted () {
-    // axios.defaults.baseURL = '/api'
-    // axios.defaults.headers = {
-    //   appkey: 'AbhC31IG7ruCDp57'
-    // }
-    // console.log(1111111)
-    // axios.get('book/hot_list')
-    // // axios.get('http://bl.7yue.pro/v1/book/hot_list').then((res) => {
-    // //   console.log(res);
-    // // }).catch((err) => {
-    // //   console.log(err);
-    // // })
-
-    axios.request({
-      url: '/classic/latest',
-      method: 'GET'
-    }).then((res) => {
-      console.log(res)
-    })
   }
 }
 </script>
