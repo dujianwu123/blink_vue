@@ -8,7 +8,7 @@
       <p class="year">{{ year }}</p>
     </div>
     <!-- <link> -->
-    <Like :like_class="like_class" :count="'123'" />
+    <Like :likeStatus="likeStatus" :like_class="like_class" :count="'123'" />
     <!-- <分享> -->
     <Share :share_class="share_class" />
   </div>
@@ -18,6 +18,11 @@
 import Like from '@/common/like.vue'
 import Share from '@/common/share.vue'
 export default {
+  props: {
+    likeStatus: {
+      type: Boolean
+    }
+  },
   components: {
     Like,
     Share

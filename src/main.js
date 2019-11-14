@@ -12,6 +12,13 @@ Vue.use(VueLazyload, {
   loading: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1548875654366&di=418ec8d3ac78d5512df001b8d0783648&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201503%2F26%2F20150326075021_uFfLC.thumb.700_0.gif',
   attempt: 1
 })
+Vue.prototype.$dispatch = function (eventName, data) {
+  let parent = this.$parent
+  while (parent) {
+    parent.$emit(eventName, data)
+    parent = parent.$parent
+  }
+}
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

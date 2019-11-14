@@ -1,11 +1,12 @@
 <template>
   <div :class="['like_warp',like_class]">
-    <img v-lazy="yesSrc" />
-    <span>{{count}}</span>
+    <img @click="onLike" v-lazy="likeStatus? yesSrc : noSrc" />
+    <span>{{likeCount}}</span>
   </div>
 </template>
 
 <script>
+import _ from 'lodash'
 export default {
   props: {
     like_class: {
@@ -15,13 +16,35 @@ export default {
     count: {
       type: String,
       default: ''
+    },
+    likeStatus: {
+      type: Boolean
+    },
+    readyOnly: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
     return {
       yesSrc: require('@/assets/images/like/like.png'),
-      noSrc: require('@/assets/images/like/like@dis.png')
+      noSrc: require('@/assets/images/like/like@dis.png'),
+      likeCount: this.count
     }
+  },
+  methods: {
+    onLike: _.debounce(function () {
+      if (this.readyOnly) { // 只读
+        return
+      }
+      if (this.likeStatus) { // 喜欢->不喜欢
+        this.$dispatch('likeTapStatus', false)
+        this.likeCount = this.likeCount - 1
+      } else { // 不喜欢->喜欢
+        this.$dispatch('likeTapStatus', true)
+        this.likeCount = this.likeCount + 1
+      }
+    }, 300)
   }
 }
 </script>
