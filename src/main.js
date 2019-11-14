@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import './assets/reset.css'
+import './assets/styles/reset.css'
 import './assets/viewport'
+import './assets/styles/iconfont.css'
 import VueLazyload from 'vue-lazyload'
 Vue.config.productionTip = false
 Vue.use(VueLazyload, {

@@ -1,11 +1,11 @@
 <template>
   <div class="header">
     <div class="hearder_date">
-      No.<span class="day">17</span><span class="shu"></span>
+      No.<span class="day">{{ day }}</span><span class="shu"></span>
     </div>
     <div>
-      <p class="month">三月</p>
-      <p class="year">2018</p>
+      <p class="month">{{ month }}</p>
+      <p class="year">{{ year }}</p>
     </div>
     <!-- <link> -->
     <Like :like_class="like_class" :count="'123'" />
@@ -25,8 +25,18 @@ export default {
   data () {
     return {
       like_class: 'classic_like',
-      share_class: 'share_class'
+      share_class: 'share_class',
+      day: '',
+      months: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+      month: '',
+      year: ''
     }
+  },
+  created () {
+    let now = new Date()
+    this.day = now.getDate()
+    this.month = this.months[now.getMonth()]
+    this.year = now.getFullYear()
   }
 }
 </script>
@@ -66,7 +76,7 @@ export default {
 
     .classic_like {
       position: absolute;
-      right: 69px;
+      right: 76px;
       top: 32px;
     }
     .share_class {
