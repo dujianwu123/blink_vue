@@ -5,7 +5,7 @@
       <img class="play" :src="playSrc"/>
     </div>
     <img class="tag" src="../../../assets/images/classic/music@tag.png"/>
-    <p>{{ classicData.title }}</p>
+    <p>{{ classicData.content }}</p>
   </div>
 </template>
 
@@ -56,7 +56,7 @@ export default {
       bottom: 58px;
     }
     p {
-      max-width: 270px;
+      max-width: 370px;
       font-size: 36px;
       line-height: 50px;
     }

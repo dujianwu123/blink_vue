@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view class="top"/>
+    <keep-alive>
+      <router-view class="top"/>
+    </keep-alive>
 
     <div class="nav">
       <router-link :to="{ path: '/' }">

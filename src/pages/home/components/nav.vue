@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import _ from 'lodash'
 export default {
   props: {
     title: {
@@ -26,12 +27,12 @@ export default {
     }
   },
   methods: {
-    onLeft () {
+    onLeft: _.debounce(function () {
       this.$emit('onLeft')
-    },
-    onRight () {
+    }, 200),
+    onRight: _.debounce(function () {
       this.$emit('onRight')
-    }
+    }, 200)
   }
 }
 </script>

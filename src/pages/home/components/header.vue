@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="hearder_date">
-      No.<span class="day">{{ index }}</span><span class="shu"></span>
+      No.<span class="day">{{ qihao }}</span><span class="shu"></span>
     </div>
     <div>
       <p class="month">{{ month }}</p>
@@ -49,7 +49,10 @@ export default {
     this.month = this.months[now.getMonth()]
     this.year = now.getFullYear()
   },
-  mounted () {
+  computed: {
+    qihao () {
+      return Number(this.index) > 10 ? this.index : '0' + this.index
+    }
   }
 }
 </script>

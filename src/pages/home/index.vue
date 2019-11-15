@@ -68,35 +68,30 @@ export default {
       }
     },
     // 获取新一期
-    onPreviou () {
+    async onPreviou () {
       if (!classicApi.getIsLatest(this.classicData.index)) {
-        classicApi.getClassic(this.classicData.index, 'next').then((res) => {
-          this.classicData = res.data
-          if (this.classicData.like_status === 1) {
-            this.likeStatus = true
-          } else {
-            this.likeStatus = false
-          }
-          this.latest = classicApi.getIsLatest(this.classicData.index)
-          this.first = classicApi.getIsFirst(this.classicData.index)
-        })
+        let res = await classicApi.getClassic(this.classicData.index, 'next')
+        this._updataClassicData(res.data)
       }
     },
     // 获取旧一期
-    onNext () {
+    async onNext () {
       if (!classicApi.getIsFirst(this.classicData.index)) {
-        classicApi.getClassic(this.classicData.index, 'previous').then((res) => {
-          this.classicData = res.data
-          if (this.classicData.like_status === 1) {
-            this.likeStatus = true
-          } else {
-            this.likeStatus = false
-          }
-          this.latest = classicApi.getIsLatest(this.classicData.index)
-          this.first = classicApi.getIsFirst(this.classicData.index)
-        })
+        let res = await classicApi.getClassic(this.classicData.index, 'previous')
+        this._updataClassicData(res.data)
       }
+    },
+    _updataClassicData (data) {
+      this.classicData = data
+      if (this.classicData.like_status === 1) {
+        this.likeStatus = true
+      } else {
+        this.likeStatus = false
+      }
+      this.latest = classicApi.getIsLatest(this.classicData.index)
+      this.first = classicApi.getIsFirst(this.classicData.index)
     }
+
   },
   created () {
     // 获取最新一期数据
