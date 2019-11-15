@@ -1,13 +1,18 @@
 <template>
   <div class="classic_container">
-    <img class="show_img" src="http://bl.7yue.pro/images/movie.8.png"/>
+    <img class="show_img" :src="classicData.image"/>
     <img class="tag" src="../../../assets/images/classic/essay@tag.png"/>
-    <p>人生不能像做菜，把所有的料准备好才下锅</p>
+    <p>{{classicData.content}}</p>
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    classicData: {
+      type: Object
+    }
+  },
   data () {
     return {
     }

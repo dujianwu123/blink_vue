@@ -1,7 +1,7 @@
 <template>
   <div :class="['like_warp',like_class]">
-    <img @click="onLike" v-lazy="likeStatus? yesSrc : noSrc" />
-    <span>{{likeCount}}</span>
+    <img @click="onLike" v-lazy="likeStatus ? yesSrc : noSrc" />
+    <span>{{ likeCount }}</span>
   </div>
 </template>
 
@@ -14,8 +14,7 @@ export default {
       default: ''
     },
     count: {
-      type: String,
-      default: ''
+      type: Number
     },
     likeStatus: {
       type: Boolean
@@ -32,6 +31,11 @@ export default {
       likeCount: this.count
     }
   },
+  watch: {
+    count (val) {
+      this.likeCount = val
+    }
+  },
   methods: {
     onLike: _.debounce(function () {
       if (this.readyOnly) { // 只读
@@ -39,10 +43,10 @@ export default {
       }
       if (this.likeStatus) { // 喜欢->不喜欢
         this.$dispatch('likeTapStatus', false)
-        this.likeCount = this.likeCount - 1
+        this.likeCount = Number(this.likeCount) - 1
       } else { // 不喜欢->喜欢
         this.$dispatch('likeTapStatus', true)
-        this.likeCount = this.likeCount + 1
+        this.likeCount = Number(this.likeCount) + 1
       }
     }, 300)
   }

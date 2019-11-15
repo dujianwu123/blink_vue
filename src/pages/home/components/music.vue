@@ -1,16 +1,21 @@
 <template>
   <div class="classic_container">
     <div class="image_warp">
-      <img class="show_img" src="http://bl.7yue.pro/images/movie.8.png"/>
+      <img class="show_img" :src="classicData.image"/>
       <img class="play" :src="playSrc"/>
     </div>
     <img class="tag" src="../../../assets/images/classic/music@tag.png"/>
-    <p>音乐，把所有的料准备好才下锅</p>
+    <p>{{ classicData.title }}</p>
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    classicData: {
+      type: Object
+    }
+  },
   data () {
     return {
       playSrc: require('../../../assets/images/classic/player@play.png'),

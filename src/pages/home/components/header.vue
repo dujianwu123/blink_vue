@@ -1,14 +1,14 @@
 <template>
   <div class="header">
     <div class="hearder_date">
-      No.<span class="day">{{ day }}</span><span class="shu"></span>
+      No.<span class="day">{{ index }}</span><span class="shu"></span>
     </div>
     <div>
       <p class="month">{{ month }}</p>
       <p class="year">{{ year }}</p>
     </div>
     <!-- <link> -->
-    <Like :likeStatus="likeStatus" :like_class="like_class" :count="'123'" />
+    <Like :likeStatus="likeStatus" :like_class="like_class" :count="count" />
     <!-- <分享> -->
     <Share :share_class="share_class" />
   </div>
@@ -21,6 +21,12 @@ export default {
   props: {
     likeStatus: {
       type: Boolean
+    },
+    count: {
+      type: Number
+    },
+    index: {
+      type: Number
     }
   },
   components: {
@@ -42,6 +48,8 @@ export default {
     this.day = now.getDate()
     this.month = this.months[now.getMonth()]
     this.year = now.getFullYear()
+  },
+  mounted () {
   }
 }
 </script>
@@ -87,7 +95,7 @@ export default {
     .share_class {
       position: absolute;
       right: 31px;
-      top: 38px;
+      top: 35px;
     }
   }
 </style>
