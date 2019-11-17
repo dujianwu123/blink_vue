@@ -16,7 +16,7 @@
     />
     <Music
       :classicData="classicData"
-      v-show="classicData.type === 200"
+      v-if="classicData.type === 200"
     />
     <Nav
       @onLeft="onPreviou"

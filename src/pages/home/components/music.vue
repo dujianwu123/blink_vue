@@ -2,10 +2,11 @@
   <div class="classic_container">
     <div class="image_warp">
       <img class="show_img" :src="classicData.image"/>
-      <img class="play" :src="playSrc"/>
+      <img class="play" @click="onPlay" :src="playing ? pauseSrc : playSrc"/>
     </div>
     <img class="tag" src="../../../assets/images/classic/music@tag.png"/>
     <p>{{ classicData.content }}</p>
+    <audio :src="this.classicData.url" ref="eventAudio"></audio>
   </div>
 </template>
 
@@ -19,8 +20,22 @@ export default {
   data () {
     return {
       playSrc: require('../../../assets/images/classic/player@play.png'),
-      pauseSrc: require('../../../assets/images/classic/player@pause.png')
+      pauseSrc: require('../../../assets/images/classic/player@pause.png'),
+      playing: false
     }
+  },
+  methods: {
+    onPlay () {
+      let objAudio = this.$refs.eventAudio
+      objAudio.play()
+      this.playing = true
+      setTimeout(() => {
+        this.playing = false
+      }, objAudio.duration * 1000 + 100)
+    }
+  },
+  mounted () {
+    this.playing = false
   }
 }
 </script>
@@ -59,6 +74,10 @@ export default {
       max-width: 370px;
       font-size: 36px;
       line-height: 50px;
+    }
+    audio {
+      width: 0;
+      height: 0;
     }
   }
 </style>
