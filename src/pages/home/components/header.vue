@@ -26,7 +26,8 @@ export default {
       type: Number
     },
     index: {
-      type: Number
+      type: Number,
+      default: 0
     }
   },
   components: {

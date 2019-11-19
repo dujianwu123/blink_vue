@@ -1,6 +1,8 @@
 <template>
   <div :class="['share_warp',share_class]">
-    <a class="share" href="javascript:;"></a>
+    <a class="share" href="javascript:;">
+      <img src="../assets/images/icon/share.png" alt="">
+    </a>
   </div>
 </template>
 
@@ -25,8 +27,10 @@ export default {
       display: block;
       width: 40px;
       height: 40px;
-      background-size: 100% 100%;
-      background: url('~@/assets/images/icon/share.png') no-repeat;
+      img {
+        width: 40px;
+        height: 40px;
+      }
     }
   }
 </style>

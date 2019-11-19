@@ -1,8 +1,8 @@
 <template>
   <div class="classic_nav">
-    <a @click="onLeft" :class="latest ? 'nav_left latest_left' : 'nav_left left'" href="javascript:;"></a>
+    <a @click="onLeft" :class="latest ? 'nav_btn latest_left' : 'nav_btn left'" href="javascript:;"></a>
     <span>{{ title }}</span>
-    <a @click="onRight" :class="first ? 'nav_right first_right' : 'nav_right right'" href="javascript:;"></a>
+    <a @click="onRight" :class="first ? 'nav_btn first_right' : 'nav_btn right'" href="javascript:;"></a>
   </div>
 </template>
 
@@ -44,11 +44,6 @@ export default {
     background: #f7f7f7;
     display: flex;
     align-items: center;
-    .nav_left {
-      width: 80px;
-      height: 80px;
-      background-size: 100% 100%;
-    }
     .latest_left {
       background: url('~@/assets/images/classic/triangle.dis@left.png') no-repeat;
     }
@@ -66,7 +61,7 @@ export default {
       flex-grow: 1;
       font-size: 34px;
     }
-    .nav_right {
+    .nav_btn {
       width: 80px;
       height: 80px;
       background-size: 100% 100%;
