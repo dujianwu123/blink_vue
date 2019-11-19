@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="hearder_date">
-      No.<span class="day">{{ qihao }}</span><span class="shu"></span>
+      No.<span class="day">{{ qihao==='undefined' ? '' : qihao }}</span><span class="shu"></span>
     </div>
     <div>
       <p class="month">{{ month }}</p>

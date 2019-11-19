@@ -1,7 +1,8 @@
 <template>
   <div class="classic_container">
     <div class="image_warp">
-      <img class="show_img" :src="classicData.image"/>
+      <!-- <img :class="playing ? 'show_img rotation' : 'show_img'" :src="classicData.image"/> -->
+      <img ref="show_img" class="show_img" :src="classicData.image"/>
       <img class="play" @click="onPlay" :src="playing ? pauseSrc : playSrc"/>
     </div>
     <img class="tag" src="../../../assets/images/classic/music@tag.png"/>
@@ -21,17 +22,33 @@ export default {
     return {
       playSrc: require('../../../assets/images/classic/player@play.png'),
       pauseSrc: require('../../../assets/images/classic/player@pause.png'),
-      playing: false
+      playing: false,
+      r: 0,
+      timer: null
     }
   },
   methods: {
     onPlay () {
       let objAudio = this.$refs.eventAudio
-      objAudio.play()
-      this.playing = true
-      setTimeout(() => {
+      if (!this.playing) {
+        objAudio.play()
+        this.playing = true
+        this.timer = setInterval(() => {
+          this.$refs.show_img.style.transform = 'rotate(' + (this.r += 10) + 'deg)'
+          this.$refs.show_img.style.transition = 'all 0.5s linear'
+          if (objAudio.ended) { // 判断是否播放结束
+            this.playing = false
+            clearInterval(this.timer)
+            this.$refs.show_img.style.transform = 'rotate(0deg)'
+            this.$refs.show_img.style.transition = ''
+            this.r = 0
+          }
+        }, 500)
+      } else { // 暂停
+        clearInterval(this.timer)
         this.playing = false
-      }, objAudio.duration * 1000 + 100)
+        objAudio.pause()
+      }
     }
   },
   mounted () {
